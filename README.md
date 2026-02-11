@@ -1,90 +1,90 @@
 # Twin Messenger 💬
 
-![License](https://img.shields.io/badge/license-MIT-blue.svg)
-![Status](https://img.shields.io/badge/status-active-success.svg)
+![Licencia](https://img.shields.io/badge/license-MIT-blue.svg)
+![Estado](https://img.shields.io/badge/status-active-success.svg)
 ![PHP](https://img.shields.io/badge/backend-PHP-777BB4.svg)
 ![MySQL](https://img.shields.io/badge/database-MySQL-4479A1.svg)
 
-> **Twin-Messenger** is a nostalgic chat application that revives the classic MSN Messenger experience. Built with native web technologies, it features instant messaging, user status, and the iconic "Buzz" (Nudge) feature.
+> **Twin-Messenger** es una aplicación de chat nostálgica que revive la clásica experiencia de MSN Messenger. Construida con tecnologías web nativas, incluye mensajería instantánea, estado de usuario y la icónica función "Buzz" (Zumbido).
 
 ---
 
 ## 📸 Demo
 
-| Login | Contact List | Conversation |
-|-------|--------------|--------------|
+| Login | Lista de Contactos | Conversación |
+|-------|--------------------|--------------|
 | <img width="452" alt="Login" src="https://github.com/user-attachments/assets/2f8e4e34-dd7c-48cf-90d4-4fb075ace2ce" /> | <img width="452" alt="Contact List" src="https://github.com/user-attachments/assets/d9d213a9-86b8-4dc5-a61f-9f8b2efdb094" /> | <img width="452" alt="Conversation" src="https://github.com/user-attachments/assets/31140da9-c7df-4aa4-a28c-871cbe826698" /> |
 
  
-## 🚀 Features
+## 🚀 Características
 
-- 📨 **Instant Messaging:** Fluid chat system using AJAX Polling.
-- 🔔 **Buzz (Nudge):** Shake your contact's screen with the classic sound!
-- 🟢 **User Status:** Automatic Online/Offline detection.
-- 👥 **Contact Management:** Add friends via email.
-- 🔊 **Sound Notifications:** Sounds for new messages and buzzes.
-- 📱 **Responsive Design:** Adapted for mobile and desktop.
+- 📨 **Mensajería Instantánea:** Sistema de chat fluido usando AJAX Polling.
+- 🔔 **Buzz (Zumbido):** ¡Haz vibrar la pantalla de tu contacto con el sonido clásico!
+- 🟢 **Estado de Usuario:** Detección automática de En línea / Desconectado.
+- 👥 **Gestión de Contactos:** Agrega amigos mediante correo electrónico.
+- 🔊 **Notificaciones Sonoras:** Sonidos para nuevos mensajes y zumbidos.
+- 📱 **Diseño Responsive:** Adaptado para móvil y escritorio.
 
-## 🛠️ Tech Stack
+## 🛠️ Stack Tecnológico
 
-* **Frontend:** HTML5, CSS3, Vanilla JavaScript.
-* **Backend:** PHP (Native, no frameworks).
-* **Database:** MySQL / MariaDB.
-* **Architecture:** REST API with PHP Session-based authentication.
+* **Frontend:** HTML5, CSS3, JavaScript Vanilla.
+* **Backend:** PHP (Nativo, sin frameworks).
+* **Base de Datos:** MySQL / MariaDB.
+* **Arquitectura:** API REST con autenticación basada en sesiones PHP.
 
-## 🔧 Installation & Setup
+## 🔧 Instalación y Configuración
 
-Follow these steps to run the project locally.
+Sigue estos pasos para ejecutar el proyecto localmente.
 
-### Prerequisites
-* **PHP:** Version 7.4 or higher (must be in your system PATH).
-* **MySQL:** (Recommended to use XAMPP/WAMP just to start the Database service).
+### Prerrequisitos
+* **PHP:** Versión 7.4 o superior (debe estar en el PATH del sistema).
+* **MySQL:** (Se recomienda usar XAMPP/WAMP solo para iniciar el servicio de base de datos).
 
-### Steps
+### Pasos
 
-1.  **Clone the repository**
+1.  **Clonar el repositorio**
     ```bash
-    git clone [https://github.com/AngelSPerez/Twin-Messenger.git](https://github.com/AngelSPerez/Twin-Messenger.git)
+    git clone https://github.com/AngelSPerez/Twin-Messenger.git
     cd Twin-Messenger
     ```
 
-2.  **Database Setup (MySQL)**
-    * Start the MySQL service (via XAMPP or terminal).
-    * Open phpMyAdmin or your preferred SQL manager.
-    * Create a database named `twin_messenger`.
-    * Import the `twin_messenger.sql` file located in the root of this project.
+2.  **Configuración de la Base de Datos (MySQL)**
+    * Inicia el servicio de MySQL (desde XAMPP o terminal).
+    * Abre phpMyAdmin o tu gestor SQL preferido.
+    * Crea una base de datos llamada `twin_messenger`.
+    * Importa el archivo `twin_messenger.sql` ubicado en la raíz del proyecto.
 
-3.  **Connection Setup**
-    Ensure you have a connection file in `api/` (e.g., `db_connect.php`) with your local credentials:
+3.  **Configuración de Conexión**
+    Asegúrate de tener un archivo de conexión en `api/` (por ejemplo, `db_connect.php`) con tus credenciales locales:
     ```php
     $host = 'localhost';
     $db   = 'twin_messenger';
-    $user = 'root'; // Default XAMPP user
-    $pass = '';     // Default XAMPP password (empty)
+    $user = 'root'; // Usuario por defecto en XAMPP
+    $pass = '';     // Contraseña por defecto en XAMPP (vacía)
     ```
 
-4.  **Start the Server**
-    Use the built-in PHP development server:
+4.  **Iniciar el Servidor**
+    Usa el servidor de desarrollo integrado de PHP:
     ```bash
-    # Run this command in the project root directory
+    # Ejecuta este comando en la raíz del proyecto
     php -S localhost:3000
     ```
 
-5.  **Ready!**
-    Open your browser at: `http://localhost:3000/index.html`
+5.  **¡Listo!**
+    Abre tu navegador en: `http://localhost:3000/index.html`
 
-## 🧪 Test Users
-The database includes pre-created accounts for quick testing:
-* **User 1:** `angel@gmail.com` | **Pass:** `123456`
-* **User 2:** `alex@gmail.com`  | **Pass:** `123456`
+## 🧪 Usuarios de Prueba
+La base de datos incluye cuentas pre-creadas para pruebas rápidas:
+* **Usuario 1:** `angel@gmail.com` | **Pass:** `123456`
+* **Usuario 2:** `alex@gmail.com`  | **Pass:** `123456`
 
-## 🤝 Contributing
+## 🤝 Contribuciones
 
-Contributions are welcome! Please check the [CONTRIBUTING.md](CONTRIBUTING.md) file to see how to collaborate.
+¡Las contribuciones son bienvenidas! Consulta el archivo [CONTRIBUTING.md](CONTRIBUTING.md) para saber cómo colaborar.
 
-## 📄 License
+## 📄 Licencia
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Este proyecto está bajo la Licencia MIT - consulta el archivo [LICENSE](LICENSE) para más detalles.
 
 ---
-Made with nostalgia by [AngelSPerez](https://github.com/AngelSPerez)
+Hecho con nostalgia por [AngelDev2343](https://github.com/AngelDev2343)
