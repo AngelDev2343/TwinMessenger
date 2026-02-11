@@ -1,43 +1,43 @@
-# Contributing to Twin Messenger
+# Contribuyendo a Twin Messenger
 
-Thank you for your interest in contributing to Twin-Messenger! 🎉
+¡Gracias por tu interés en contribuir a Twin-Messenger! 🎉
 
-**This project is an open canvas.** We believe in the creativity of the community. whether you want to fix a small bug or build a massive new feature, your code is welcome here.
+**Este proyecto es un lienzo abierto.** Creemos en la creatividad de la comunidad. Ya sea que quieras corregir un pequeño error o desarrollar una gran nueva funcionalidad, tu código es bienvenido aquí.
 
-## 🚀 Unleash Your Creativity
+## 🚀 Desata tu Creatividad
 
-You are free to implement **anything useful** to the project. We want Twin-Messenger to be the best nostalgic experience possible.
+Eres libre de implementar **cualquier cosa útil** para el proyecto. Queremos que Twin-Messenger sea la mejor experiencia nostálgica posible.
 
-### What can I work on?
+### ¿En qué puedo trabajar?
 
-1.  **Make "Placeholders" Functional:**
-    You might have noticed several buttons in the app (like **"Community"**, **"Invite"**, **"Fonts"**, or **"Emoticons"**) that currently show an alert saying *"Function not available"*.
-    * **Goal:** Make them work! Feel free to write the backend and frontend logic to activate these features.
+1.  **Haz Funcionales los "Placeholders":**
+    Puede que hayas notado varios botones en la aplicación (como **"Community"**, **"Invite"**, **"Fonts"** o **"Emoticons"**) que actualmente muestran una alerta diciendo *"Function not available"*.
+    * **Objetivo:** ¡Haz que funcionen! Siéntete libre de escribir la lógica tanto del backend como del frontend para activar estas funcionalidades.
 
-2.  **Add New Features:**
-    Don't limit yourself to what you see.
-    * Want to add **File Sharing**? Go ahead.
-    * Want to implement **Voice Notes**? Do it.
-    * Want to create **Custom Themes**? We'd love to see it.
+2.  **Agregar Nuevas Funcionalidades:**
+    No te limites a lo que ves.
+    * ¿Quieres añadir **Compartición de Archivos**? Adelante.
+    * ¿Quieres implementar **Notas de Voz**? Hazlo.
+    * ¿Quieres crear **Temas Personalizados**? Nos encantaría verlo.
 
-3.  **Fix Bugs:**
-    If you find an error, help us squash it.
+3.  **Corregir Errores:**
+    Si encuentras un fallo, ayúdanos a solucionarlo.
 
-## How to Submit Changes
+## Cómo Enviar Cambios
 
-1.  **Fork** the repository.
-2.  Create a new branch (`git checkout -b feature/MyNewFeature`).
-3.  Make your changes.
-    * *Note:* If you modify the database structure, please include the SQL update script in your PR.
-4.  Commit your changes (`git commit -m 'Added: Working Emoticons logic'`).
-5.  Push to the branch (`git push origin feature/MyNewFeature`).
-6.  Open a **Pull Request**.
+1.  Haz un **Fork** del repositorio.
+2.  Crea una nueva rama (`git checkout -b feature/MiNuevaFuncionalidad`).
+3.  Realiza tus cambios.
+    * *Nota:* Si modificas la estructura de la base de datos, por favor incluye el script SQL de actualización en tu PR.
+4.  Haz commit de tus cambios (`git commit -m 'Added: Working Emoticons logic'`).
+5.  Haz push a la rama (`git push origin feature/MiNuevaFuncionalidad`).
+6.  Abre un **Pull Request**.
 
-## Project Structure & Standards
+## Estructura del Proyecto y Estándares
 
-* **Backend:** Native PHP (in `/api`). No frameworks.
-* **Frontend:** Vanilla JavaScript (`script.js`), HTML5, and CSS3.
-* **Database:** MySQL / MariaDB.
-* **Style:** Keep the code clean, commented, and maintain the **Retro/Nostalgic UI** style.
+* **Backend:** PHP nativo (en `/api`). Sin frameworks.
+* **Frontend:** JavaScript Vanilla (`script.js`), HTML5 y CSS3.
+* **Base de Datos:** MySQL / MariaDB.
+* **Estilo:** Mantén el código limpio, comentado y conserva el estilo de interfaz **Retro/Nostálgico**.
 
-Let's revive the nostalgia together! 💙
+¡Revive la nostalgia con nosotros! 💙
