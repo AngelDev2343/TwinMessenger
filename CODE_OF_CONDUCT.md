@@ -1,25 +1,25 @@
-# Code of Conduct
+# Código de Conducta
 
-## Our Pledge
+## Nuestro Compromiso
 
-We as members, contributors, and leaders pledge to make participation in our community a harassment-free experience for everyone, regardless of age, body size, visible or invisible disability, ethnicity, sex characteristics, gender identity and expression, level of experience, education, socio-economic status, nationality, personal appearance, race, religion, or sexual identity and orientation.
+Nosotros, como miembros, colaboradores y líderes, nos comprometemos a hacer que la participación en nuestra comunidad sea una experiencia libre de acoso para todas las personas, independientemente de su edad, tamaño corporal, discapacidad visible o invisible, etnia, características sexuales, identidad y expresión de género, nivel de experiencia, educación, estatus socioeconómico, nacionalidad, apariencia personal, raza, religión, o identidad y orientación sexual.
 
-## Our Standards
+## Nuestros Estándares
 
-Examples of behavior that contributes to a positive environment for our community include:
-* Demonstrating empathy and kindness toward other people.
-* Being respectful of differing opinions, viewpoints, and experiences.
-* Giving and gracefully accepting constructive feedback.
-* Focusing on what is best for the community.
+Ejemplos de comportamientos que contribuyen a un entorno positivo para nuestra comunidad incluyen:
+* Demostrar empatía y amabilidad hacia otras personas.
+* Ser respetuoso con opiniones, puntos de vista y experiencias diferentes.
+* Dar y aceptar con gracia retroalimentación constructiva.
+* Enfocarse en lo que es mejor para la comunidad.
 
-Examples of unacceptable behavior include:
-* The use of sexualized language or imagery, and sexual attention or advances of any kind.
-* Trolling, insulting or derogatory comments, and personal or political attacks.
-* Public or private harassment.
-* Publishing others' private information without their explicit permission.
+Ejemplos de comportamientos inaceptables incluyen:
+* El uso de lenguaje o imágenes sexualizadas, y atención o insinuaciones sexuales de cualquier tipo.
+* Trolling, comentarios insultantes o despectivos, y ataques personales o políticos.
+* Acoso público o privado.
+* Publicar información privada de otras personas sin su permiso explícito.
 
-## Enforcement
+## Aplicación
 
-Project maintainers have the right and responsibility to remove, edit, or reject comments, commits, code, wiki edits, issues, and other contributions that are not aligned to this Code of Conduct, and will communicate reasons for moderation decisions when appropriate.
+Los mantenedores del proyecto tienen el derecho y la responsabilidad de eliminar, editar o rechazar comentarios, commits, código, ediciones del wiki, issues y otras contribuciones que no estén alineadas con este Código de Conducta, y comunicarán las razones de las decisiones de moderación cuando sea apropiado.
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported by contacting the project team.
+Los casos de comportamiento abusivo, acosador o inaceptable pueden reportarse contactando al equipo del proyecto.
