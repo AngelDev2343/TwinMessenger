@@ -5,7 +5,7 @@
 ![PHP](https://img.shields.io/badge/backend-PHP-777BB4.svg)
 ![MySQL](https://img.shields.io/badge/database-MySQL-4479A1.svg)
 
-> **Twin-Messenger** es una aplicación de chat nostálgica que revive la clásica experiencia de MSN Messenger. Construida con tecnologías web nativas, incluye mensajería instantánea, estado de usuario y la icónica función "Buzz" (Zumbido).
+**Twin-Messenger** es una aplicación de chat nostálgica que revive la clásica experiencia de MSN Messenger. Construida con tecnologías web nativas, incluye mensajería instantánea, estado de usuario y la icónica función "Buzz" (Zumbido).
 
 ---
 
