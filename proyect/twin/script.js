@@ -279,11 +279,13 @@ async function handleLogin(event) {
         } else {
             console.error("❌ login.php no devolvió un session_id!");
         }
-        
-        if ('Notification' in window && Notification.permission !== 'granted') {
-            try { await Notification.requestPermission(); } catch(e) {}
-        }
 
+        // 🔥 Intentar actualizar estado (no bloquea si falla, login.php ya lo hace)
+        updateUserStatus('online').catch(err => {
+            console.warn('⚠️ Error actualizando estado desde JS (login.php ya debió hacerlo):', err);
+        });
+
+        // Redirigir directamente a main.html
         window.location.href = `${BASE_PATH}/main.html`;
     } else {
         alert(result?.message || 'Error al iniciar sesión.');
@@ -330,12 +332,31 @@ async function handleRegistration(event) {
     }
 }
 
+// ===============================
+// ACTUALIZAR ESTADO DEL USUARIO
+// ===============================
+async function updateUserStatus(status) {
+    try {
+        const result = await apiCall('update_status.php', 'POST', { status });
+        if (result && result.success) {
+            console.log('✅ Estado actualizado a:', status);
+        }
+        return result;
+    } catch (error) {
+        console.error('❌ Error actualizando estado:', error);
+        return null;
+    }
+}
+
 async function handleLogout(callApi = true) {
     stopPolling();
     stopContactPolling();
     
     if (callApi) {
-        try { await apiCall('logout.php', 'POST'); } catch(e) {}
+        try { 
+            await updateUserStatus('offline');
+            await apiCall('logout.php', 'POST'); 
+        } catch(e) {}
     }
     
     sessionStorage.clear();
@@ -350,6 +371,13 @@ async function loadContacts() {
     const userName = sessionStorage.getItem('user_name');
     if (!userName && !window.location.pathname.includes('index')) {
         return; 
+    }
+
+    // 🔥 Actualizar last_activity del usuario (heartbeat) - No bloqueante
+    if (window.location.pathname.includes('main.html') || window.location.pathname.includes('conversation.html')) {
+        updateUserStatus('online').catch(err => {
+            console.warn('⚠️ Error en heartbeat:', err);
+        });
     }
 
     const statusName = document.querySelector('.info h3');
@@ -397,6 +425,7 @@ function renderContacts(contacts) {
         return;
     }
 
+    // 🔥 Ordenar: primero mensajes no leídos, luego online, luego por nombre
     const sortedContacts = contacts.sort((a, b) => {
         const aUnread = a.unread_count > 0 ? 1 : 0;
         const bUnread = b.unread_count > 0 ? 1 : 0;
@@ -413,13 +442,19 @@ function renderContacts(contacts) {
         const div = document.createElement('div');
         div.className = 'user2';
         div.style.cursor = 'pointer';
+        div.style.transition = 'background-color 0.3s ease';
         
+        // 🔥 Destacar mensajes no leídos
         if (contact.unread_count > 0) {
             div.style.backgroundColor = '#eef6fc';
             div.style.borderLeft = '4px solid #007bff';
         }
 
+        // 🔥 Color del indicador de estado
         const statusColor = contact.status === 'online' ? '#2ecc71' : '#95a5a6';
+        const statusText = contact.status === 'online' ? 'En línea' : 'Desconectado';
+        
+        // 🔥 Badge de mensajes no leídos
         const badge = contact.unread_count > 0 
             ? `<span style="background:#e74c3c; color:white; padding:2px 8px; border-radius:12px; font-size:11px; font-weight:bold;">${contact.unread_count}</span>` 
             : '';
@@ -427,10 +462,10 @@ function renderContacts(contacts) {
         div.innerHTML = `
             <div style="position:relative; margin-right:15px;">
                 <img src="${BASE_PATH}/images/user.png" alt="User" style="width:40px; height:40px; border-radius:50%;">
-                <span style="position:absolute; bottom:0; right:0; width:10px; height:10px; background:${statusColor}; border-radius:50%; border:2px solid white;"></span>
+                <span style="position:absolute; bottom:0; right:0; width:12px; height:12px; background:${statusColor}; border-radius:50%; border:2px solid white; box-shadow:0 0 3px rgba(0,0,0,0.3);" title="${statusText}"></span>
             </div>
             <div style="flex-grow:1; display:flex; align-items:center; justify-content:space-between;">
-                <p style="margin:0; font-weight:${contact.unread_count > 0 ? '600' : '400'}; color:#333;">
+                <p style="margin:0; font-weight:${contact.unread_count > 0 ? '600' : '400'}; color:#333; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;">
                     ${contact.name}
                 </p>
                 ${badge}
@@ -438,6 +473,19 @@ function renderContacts(contacts) {
         `;
         
         div.addEventListener('click', () => openChat(contact.id, contact.name));
+        
+        // 🔥 Efecto hover
+        div.addEventListener('mouseenter', () => {
+            if (contact.unread_count === 0) {
+                div.style.backgroundColor = '#f5f5f5';
+            }
+        });
+        div.addEventListener('mouseleave', () => {
+            if (contact.unread_count === 0) {
+                div.style.backgroundColor = '';
+            }
+        });
+        
         chatsContainer.appendChild(div);
     });
 }
@@ -492,6 +540,43 @@ function triggerNewMessageNotification(count) {
             tag: 'new-message'
         });
     }
+}
+
+// Función para solicitar permiso de notificaciones
+async function requestNotificationPermission() {
+    if (!('Notification' in window)) {
+        console.log('⚠️ Este navegador no soporta notificaciones');
+        return;
+    }
+    
+    if (Notification.permission === 'granted') {
+        console.log('✅ Permiso de notificaciones ya concedido');
+        return;
+    }
+    
+    if (Notification.permission === 'denied') {
+        console.log('❌ Permiso de notificaciones denegado');
+        return;
+    }
+    
+    // Esperar un momento para que la página cargue completamente
+    setTimeout(async () => {
+        try {
+            const permission = await Notification.requestPermission();
+            console.log('🔔 Permiso de notificaciones:', permission);
+            
+            if (permission === 'granted') {
+                // Mostrar notificación de bienvenida
+                new Notification('Twin Messenger', {
+                    body: '¡Notificaciones activadas! Recibirás alertas de nuevos mensajes.',
+                    icon: `${BASE_PATH}/images/Twin Messenger.png`,
+                    tag: 'welcome'
+                });
+            }
+        } catch (error) {
+            console.error('Error solicitando permiso de notificaciones:', error);
+        }
+    }, 1000); // Esperar 1 segundo después de que cargue la página
 }
 
 // ===============================
@@ -827,10 +912,50 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (page === 'main.html') {
             console.log('🏠 Cargando página principal');
+            
+            // 🔥 ACTUALIZAR ESTADO A ONLINE INMEDIATAMENTE
+            updateUserStatus('online').then(() => {
+                console.log('✅ Estado actualizado a online al cargar main.html');
+            });
+            
+            // Solicitar permiso de notificaciones en main.html
+            requestNotificationPermission();
+            
             loadContacts();
         } else if (page === 'conversation.html') {
             console.log('💬 Cargando conversación');
+            
+            // 🔥 ACTUALIZAR ESTADO A ONLINE INMEDIATAMENTE
+            updateUserStatus('online').then(() => {
+                console.log('✅ Estado actualizado a online al cargar conversation.html');
+            });
+            
             loadChat();
         }
+
+        // 🔥 Detectar cierre de ventana/pestaña para actualizar estado
+        window.addEventListener('beforeunload', () => {
+            // Usar sendBeacon para enviar la solicitud de forma asíncrona incluso al cerrar
+            const sessionId = sessionStorage.getItem('php_session_id');
+            if (sessionId) {
+                const url = `${API_URL}/update_status.php?PHPSESSID=${sessionId}`;
+                const data = JSON.stringify({ status: 'offline' });
+                navigator.sendBeacon(url, data);
+            }
+        });
+
+        // 🔥 Detectar cuando la pestaña pierde/gana foco
+        document.addEventListener('visibilitychange', () => {
+            if (document.hidden) {
+                // La pestaña está oculta, pero el usuario podría volver
+                console.log('⏸️ Pestaña oculta');
+            } else {
+                // La pestaña está visible de nuevo
+                console.log('▶️ Pestaña visible');
+                if (page === 'main.html' || page === 'conversation.html') {
+                    updateUserStatus('online');
+                }
+            }
+        });
     }
 });
